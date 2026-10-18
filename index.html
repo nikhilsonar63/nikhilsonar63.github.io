@@ -1,0 +1,583 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Nikhil Sonar | Game Developer</title>
+
+<style>
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --bg: #08090d;
+  --panel: #11131a;
+  --text: #f5f5f7;
+  --muted: #a2a5b3;
+  --purple: #a855f7;
+  --cyan: #67e8f9;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: Arial, Helvetica, sans-serif;
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.container {
+  width: min(1100px, 90%);
+  margin: auto;
+}
+
+/* NAVIGATION */
+
+nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 22px 0;
+  border-bottom: 1px solid #ffffff12;
+}
+
+.logo {
+  font-size: 22px;
+  font-weight: 900;
+  letter-spacing: 1px;
+}
+
+.logo span {
+  color: var(--cyan);
+}
+
+.nav-links {
+  display: flex;
+  gap: 28px;
+  color: var(--muted);
+  font-size: 14px;
+}
+
+.nav-links a:hover {
+  color: var(--cyan);
+}
+
+/* HERO */
+
+.hero {
+  min-height: 620px;
+  display: flex;
+  align-items: center;
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+}
+
+.hero::before {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  width: 440px;
+  height: 440px;
+  right: -100px;
+  top: 60px;
+  border-radius: 50%;
+  background: #7928ca;
+  filter: blur(140px);
+  opacity: 0.3;
+}
+
+.hero::after {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  width: 300px;
+  height: 300px;
+  left: -150px;
+  bottom: 0;
+  border-radius: 50%;
+  background: #0891b2;
+  filter: blur(130px);
+  opacity: 0.2;
+}
+
+.hero-content {
+  padding: 85px 0;
+}
+
+.badge {
+  display: inline-block;
+  color: var(--cyan);
+  border: 1px solid #67e8f944;
+  background: #67e8f90b;
+  border-radius: 30px;
+  padding: 7px 14px;
+  font-size: 12px;
+  letter-spacing: 1px;
+  margin-bottom: 26px;
+}
+
+.hero h1 {
+  font-size: clamp(48px, 9vw, 96px);
+  font-weight: 900;
+  letter-spacing: -4px;
+  line-height: 1.03;
+}
+
+.hero h1 span {
+  color: transparent;
+  -webkit-text-stroke: 1px var(--cyan);
+}
+
+.hero p {
+  max-width: 550px;
+  color: var(--muted);
+  font-size: 17px;
+  margin-top: 24px;
+}
+
+.buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+  margin-top: 32px;
+}
+
+.btn {
+  display: inline-block;
+  padding: 13px 21px;
+  border-radius: 7px;
+  font-weight: bold;
+  font-size: 14px;
+  transition: transform .2s, background .2s;
+}
+
+.btn:hover {
+  transform: translateY(-3px);
+}
+
+.primary {
+  color: #08090d;
+  background: var(--cyan);
+}
+
+.secondary {
+  border: 1px solid #ffffff35;
+  background: #ffffff08;
+}
+
+/* SECTION */
+
+section.content-section {
+  padding: 80px 0;
+}
+
+.section-label {
+  color: var(--cyan);
+  font-size: 12px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+}
+
+.section-heading {
+  font-size: clamp(32px, 5vw, 48px);
+  letter-spacing: -1px;
+  margin-top: 8px;
+}
+
+.section-intro {
+  color: var(--muted);
+  margin-top: 10px;
+  margin-bottom: 36px;
+}
+
+/* PROJECTS */
+
+.projects {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 22px;
+}
+
+.project {
+  background: var(--panel);
+  border: 1px solid #ffffff12;
+  border-radius: 13px;
+  overflow: hidden;
+  transition: transform .25s, border-color .25s;
+}
+
+.project:hover {
+  transform: translateY(-5px);
+  border-color: #67e8f955;
+}
+
+.project-cover {
+  min-height: 190px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 25px;
+  position: relative;
+  overflow: hidden;
+  background:
+    radial-gradient(ellipse at 70% 30%, #7928ca70, transparent 55%),
+    linear-gradient(135deg, #171a25, #090a0e);
+}
+
+.project-cover::after {
+  content: "";
+  position: absolute;
+  width: 180px;
+  height: 180px;
+  border: 1px solid #ffffff12;
+  border-radius: 50%;
+}
+
+.project-cover span {
+  position: relative;
+  z-index: 1;
+  font-size: clamp(20px, 4vw, 30px);
+  font-weight: 900;
+  letter-spacing: 1px;
+  text-shadow: 0 0 22px #a855f766;
+}
+
+.cover-2 {
+  background:
+    radial-gradient(ellipse at 30% 30%, #0891b270, transparent 60%),
+    linear-gradient(135deg, #141b25, #090a0e);
+}
+
+.cover-3 {
+  background:
+    radial-gradient(ellipse at 70% 40%, #a855f750, transparent 60%),
+    linear-gradient(135deg, #211329, #090a0e);
+}
+
+.cover-4 {
+  background:
+    radial-gradient(ellipse at 35% 35%, #0e749070, transparent 60%),
+    linear-gradient(135deg, #101c22, #090a0e);
+}
+
+.project-info {
+  padding: 23px;
+}
+
+.project-info h3 {
+  font-size: 22px;
+  margin-bottom: 8px;
+}
+
+.project-info p {
+  font-size: 14px;
+  color: var(--muted);
+  margin-bottom: 16px;
+}
+
+.tags {
+  color: var(--cyan);
+  font-size: 12px;
+  margin-bottom: 20px;
+}
+
+.project-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.project-links a {
+  font-size: 13px;
+  border: 1px solid #ffffff25;
+  border-radius: 6px;
+  padding: 9px 12px;
+}
+
+.project-links a:hover {
+  border-color: var(--cyan);
+  color: var(--cyan);
+}
+
+/* ABOUT */
+
+.about-box {
+  padding: 32px;
+  border: 1px solid #ffffff12;
+  border-radius: 13px;
+  background:
+    linear-gradient(120deg, #a855f70b, transparent 65%),
+    var(--panel);
+}
+
+.about-box p {
+  max-width: 760px;
+  color: var(--muted);
+  margin-top: 15px;
+}
+
+.skills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 25px;
+}
+
+.skills span {
+  background: #ffffff08;
+  border: 1px solid #ffffff18;
+  padding: 8px 13px;
+  border-radius: 6px;
+  font-size: 13px;
+}
+
+/* CONTACT */
+
+.contact-box {
+  text-align: center;
+  padding: 45px 20px;
+  border: 1px solid #ffffff15;
+  border-radius: 14px;
+  background:
+    radial-gradient(ellipse at 50% 100%, #7928ca25, transparent 65%),
+    var(--panel);
+}
+
+.contact-box p {
+  color: var(--muted);
+  margin-top: 12px;
+}
+
+footer {
+  padding: 25px 0;
+  border-top: 1px solid #ffffff12;
+  color: var(--muted);
+  text-align: center;
+  font-size: 12px;
+}
+
+@media (max-width: 650px) {
+  .nav-links {
+    gap: 12px;
+    font-size: 12px;
+  }
+
+  .logo {
+    font-size: 17px;
+  }
+
+  .hero {
+    min-height: 540px;
+  }
+
+  .hero h1 {
+    letter-spacing: -2px;
+  }
+
+  .projects {
+    grid-template-columns: 1fr;
+  }
+
+  section.content-section {
+    padding: 60px 0;
+  }
+
+  .project-cover {
+    min-height: 165px;
+  }
+
+  .about-box {
+    padding: 23px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *, *::before, *::after {
+    transition: none !important;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+  <nav>
+    <a class="logo" href="#">NIKHIL<span>.</span></a>
+
+    <div class="nav-links">
+      <a href="#projects">Projects</a>
+      <a href="#about">About</a>
+      <a href="#contact">Contact</a>
+    </div>
+  </nav>
+</div>
+
+<header class="hero">
+  <div class="container hero-content">
+    <div class="badge">UNITY GAME DEVELOPER</div>
+
+    <h1>NIKHIL<br><span>SONAR.</span></h1>
+
+    <p>
+      I build interactive game experiences with Unity and C#.
+      Explore my projects, gameplay systems and development journey.
+    </p>
+
+    <div class="buttons">
+      <a class="btn primary" href="#projects">EXPLORE MY WORK ↘</a>
+      <a class="btn secondary"
+         href="https://github.com/nikhilsonar63"
+         target="_blank" rel="noopener">GITHUB PROFILE ↗</a>
+    </div>
+  </div>
+</header>
+
+<main>
+
+<section class="content-section" id="projects">
+  <div class="container">
+    <div class="section-label">01 / Selected work</div>
+    <h2 class="section-heading">Games I've Built.</h2>
+    <p class="section-intro">
+      A collection of my Unity game development projects.
+    </p>
+
+    <div class="projects">
+
+      <article class="project">
+        <div class="project-cover">
+          <span>DARK NIGHT<br>SHOOTER</span>
+        </div>
+        <div class="project-info">
+          <h3>Dark Night Shooter</h3>
+          <p>A 3D FPS zombie survival game with enemy AI, shooting and health systems.</p>
+          <div class="tags">UNITY · C# · 3D FPS</div>
+          <div class="project-links">
+            <a href="https://youtu.be/bK3xKF23kMc" target="_blank" rel="noopener">Gameplay ↗</a>
+            <a href="https://github.com/nikhilsonar63" target="_blank" rel="noopener">GitHub ↗</a>
+          </div>
+        </div>
+      </article>
+
+      <article class="project">
+        <div class="project-cover cover-2">
+          <span>ROLL<br>A BALL</span>
+        </div>
+        <div class="project-info">
+          <h3>Roll A Ball</h3>
+          <p>A 3D game featuring player movement and five playable levels.</p>
+          <div class="tags">UNITY · C# · 3D</div>
+          <div class="project-links">
+            <a href="https://youtu.be/BqhjrqneMkE" target="_blank" rel="noopener">Gameplay ↗</a>
+          </div>
+        </div>
+      </article>
+
+      <article class="project">
+        <div class="project-cover cover-3">
+          <span>SLOT<br>GAME</span>
+        </div>
+        <div class="project-info">
+          <h3>Slot Game</h3>
+          <p>A slot machine game with spinning reels, random symbols and coin management.</p>
+          <div class="tags">UNITY · C# · UI</div>
+          <div class="project-links">
+            <a href="https://nikhilsonar.itch.io/slot-game" target="_blank" rel="noopener">Play Game ↗</a>
+            <a href="https://github.com/nikhilsonar63/Slot-Game" target="_blank" rel="noopener">Source Code ↗</a>
+          </div>
+        </div>
+      </article>
+
+      <article class="project">
+        <div class="project-cover cover-4">
+          <span>FLAPPY<br>BIRD</span>
+        </div>
+        <div class="project-info">
+          <h3>Flappy Bird Clone</h3>
+          <p>A 2D arcade game clone built to practise controls, obstacles and game logic.</p>
+          <div class="tags">UNITY · C# · 2D</div>
+          <div class="project-links">
+            <a href="https://youtube.com/shorts/93rFrRQw2uc" target="_blank" rel="noopener">Gameplay ↗</a>
+          </div>
+        </div>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<section class="content-section" id="about">
+  <div class="container">
+    <div class="about-box">
+      <div class="section-label">02 / About me</div>
+      <h2 class="section-heading">Learning. Building. Improving.</h2>
+
+      <p>
+        I'm Nikhil Sonar, an aspiring Unity game developer focused on
+        gameplay programming and building games with C#. I enjoy turning
+        ideas into playable experiences and improving my skills through
+        hands-on projects.
+      </p>
+
+      <div class="skills">
+        <span>Unity</span>
+        <span>C#</span>
+        <span>Gameplay Programming</span>
+        <span>Enemy AI</span>
+        <span>UI Systems</span>
+        <span>Game Logic</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="content-section" id="contact">
+  <div class="container">
+    <div class="contact-box">
+      <div class="section-label">03 / Get in touch</div>
+      <h2 class="section-heading">Let's Build Something.</h2>
+      <p>Open to discussing Unity game development opportunities.</p>
+
+      <div class="buttons" style="justify-content:center">
+        <a class="btn primary"
+           href="https://github.com/nikhilsonar63"
+           target="_blank" rel="noopener">GITHUB ↗</a>
+
+        <a class="btn secondary"
+           href="https://www.linkedin.com/in/nikhil-sonar-3a7878385/"
+           target="_blank" rel="noopener">LINKEDIN ↗</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div class="container">
+    © 2026 Nikhil Sonar · Built with Unity passion and code.
+  </div>
+</footer>
+
+</body>
+        </html>
