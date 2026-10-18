@@ -3,7 +3,6 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
 <title>Nikhil Sonar | Game Developer</title>
 
 <style>
@@ -179,7 +178,7 @@ nav {
   background: #ffffff08;
 }
 
-/* SECTION */
+/* SECTIONS */
 
 section.content-section {
   padding: 80px 0;
@@ -384,4 +383,121 @@ footer {
   padding: 25px 0;
   border-top: 1px solid #ffffff12;
   color: var(--muted);
-  text
+  text-align: center;
+  font-size: 12px;
+}
+
+/* MOBILE */
+
+@media (max-width: 650px) {
+  .nav-links {
+    gap: 12px;
+    font-size: 12px;
+  }
+
+  .logo {
+    font-size: 17px;
+  }
+
+  .hero {
+    min-height: 540px;
+  }
+
+  .hero h1 {
+    letter-spacing: -2px;
+  }
+
+  .projects {
+    grid-template-columns: 1fr;
+  }
+
+  section.content-section {
+    padding: 60px 0;
+  }
+
+  .project-cover {
+    min-height: 165px;
+  }
+
+  .about-box {
+    padding: 23px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *, *::before, *::after {
+    transition: none !important;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+  <nav>
+    <a class="logo" href="#">NIKHIL<span>.</span></a>
+
+    <div class="nav-links">
+      <a href="#projects">Projects</a>
+      <a href="#about">About</a>
+      <a href="#contact">Contact</a>
+    </div>
+  </nav>
+</div>
+
+<header class="hero">
+  <div class="container hero-content">
+    <div class="badge">UNITY GAME DEVELOPER</div>
+
+    <h1>NIKHIL<br><span>SONAR.</span></h1>
+
+    <p>
+      I build interactive game experiences with Unity and C#.
+      Explore my projects, gameplay systems and development journey.
+    </p>
+
+    <div class="buttons">
+      <a class="btn primary" href="#projects">EXPLORE MY WORK ↘</a>
+
+      <a class="btn secondary"
+         href="https://github.com/nikhilsonar63"
+         target="_blank" rel="noopener">GITHUB PROFILE ↗</a>
+    </div>
+  </div>
+</header>
+
+<main>
+
+<!-- PROJECTS -->
+
+<section class="content-section" id="projects">
+  <div class="container">
+
+    <div class="section-label">01 / Selected work</div>
+    <h2 class="section-heading">Games I've Built.</h2>
+
+    <p class="section-intro">
+      A collection of my Unity game development projects.
+    </p>
+
+    <div class="projects">
+
+      <!-- DARK NIGHT SHOOTER -->
+
+      <article class="project">
+        <div class="project-cover">
+          <span>DARK NIGHT<br>SHOOTER</span>
+        </div>
+
+        <div class="project-info">
+          <h3>Dark Night Shooter</h3>
+          <p>A 3D FPS zombie survival game with enemy AI, shooting and health systems.</p>
+
+          <div class="tags">UNITY · C# · 3D FPS</div>
+
+          <div class="
