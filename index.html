@@ -363,221 +363,25 @@ section.content-section {
   margin-top: 12px;
 }
 
+.contact-details {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  margin-top: 25px;
+}
+
+.contact-details a {
+  color: var(--cyan);
+  overflow-wrap: anywhere;
+}
+
+.contact-details a:hover {
+  text-decoration: underline;
+}
+
 footer {
   padding: 25px 0;
   border-top: 1px solid #ffffff12;
   color: var(--muted);
-  text-align: center;
-  font-size: 12px;
-}
-
-@media (max-width: 650px) {
-  .nav-links {
-    gap: 12px;
-    font-size: 12px;
-  }
-
-  .logo {
-    font-size: 17px;
-  }
-
-  .hero {
-    min-height: 540px;
-  }
-
-  .hero h1 {
-    letter-spacing: -2px;
-  }
-
-  .projects {
-    grid-template-columns: 1fr;
-  }
-
-  section.content-section {
-    padding: 60px 0;
-  }
-
-  .project-cover {
-    min-height: 165px;
-  }
-
-  .about-box {
-    padding: 23px;
-  }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  html {
-    scroll-behavior: auto;
-  }
-
-  *, *::before, *::after {
-    transition: none !important;
-  }
-}
-</style>
-</head>
-
-<body>
-
-<div class="container">
-  <nav>
-    <a class="logo" href="#">NIKHIL<span>.</span></a>
-
-    <div class="nav-links">
-      <a href="#projects">Projects</a>
-      <a href="#about">About</a>
-      <a href="#contact">Contact</a>
-    </div>
-  </nav>
-</div>
-
-<header class="hero">
-  <div class="container hero-content">
-    <div class="badge">UNITY GAME DEVELOPER</div>
-
-    <h1>NIKHIL<br><span>SONAR.</span></h1>
-
-    <p>
-      I build interactive game experiences with Unity and C#.
-      Explore my projects, gameplay systems and development journey.
-    </p>
-
-    <div class="buttons">
-      <a class="btn primary" href="#projects">EXPLORE MY WORK ↘</a>
-      <a class="btn secondary"
-         href="https://github.com/nikhilsonar63"
-         target="_blank" rel="noopener">GITHUB PROFILE ↗</a>
-    </div>
-  </div>
-</header>
-
-<main>
-
-<section class="content-section" id="projects">
-  <div class="container">
-    <div class="section-label">01 / Selected work</div>
-    <h2 class="section-heading">Games I've Built.</h2>
-    <p class="section-intro">
-      A collection of my Unity game development projects.
-    </p>
-
-    <div class="projects">
-
-      <article class="project">
-        <div class="project-cover">
-          <span>DARK NIGHT<br>SHOOTER</span>
-        </div>
-        <div class="project-info">
-          <h3>Dark Night Shooter</h3>
-          <p>A 3D FPS zombie survival game with enemy AI, shooting and health systems.</p>
-          <div class="tags">UNITY · C# · 3D FPS</div>
-          <div class="project-links">
-            <a href="https://youtu.be/bK3xKF23kMc" target="_blank" rel="noopener">Gameplay ↗</a>
-            <a href="https://github.com/nikhilsonar63" target="_blank" rel="noopener">GitHub ↗</a>
-          </div>
-        </div>
-      </article>
-
-      <article class="project">
-        <div class="project-cover cover-2">
-          <span>ROLL<br>A BALL</span>
-        </div>
-        <div class="project-info">
-          <h3>Roll A Ball</h3>
-          <p>A 3D game featuring player movement and five playable levels.</p>
-          <div class="tags">UNITY · C# · 3D</div>
-          <div class="project-links">
-            <a href="https://youtu.be/BqhjrqneMkE" target="_blank" rel="noopener">Gameplay ↗</a>
-          </div>
-        </div>
-      </article>
-
-      <article class="project">
-        <div class="project-cover cover-3">
-          <span>SLOT<br>GAME</span>
-        </div>
-        <div class="project-info">
-          <h3>Slot Game</h3>
-          <p>A slot machine game with spinning reels, random symbols and coin management.</p>
-          <div class="tags">UNITY · C# · UI</div>
-          <div class="project-links">
-            <a href="https://nikhilsonar.itch.io/slot-game" target="_blank" rel="noopener">Play Game ↗</a>
-            <a href="https://github.com/nikhilsonar63/Slot-Game" target="_blank" rel="noopener">Source Code ↗</a>
-          </div>
-        </div>
-      </article>
-
-      <article class="project">
-        <div class="project-cover cover-4">
-          <span>FLAPPY<br>BIRD</span>
-        </div>
-        <div class="project-info">
-          <h3>Flappy Bird Clone</h3>
-          <p>A 2D arcade game clone built to practise controls, obstacles and game logic.</p>
-          <div class="tags">UNITY · C# · 2D</div>
-          <div class="project-links">
-            <a href="https://youtube.com/shorts/93rFrRQw2uc" target="_blank" rel="noopener">Gameplay ↗</a>
-          </div>
-        </div>
-      </article>
-
-    </div>
-  </div>
-</section>
-
-<section class="content-section" id="about">
-  <div class="container">
-    <div class="about-box">
-      <div class="section-label">02 / About me</div>
-      <h2 class="section-heading">Learning. Building. Improving.</h2>
-
-      <p>
-        I'm Nikhil Sonar, an aspiring Unity game developer focused on
-        gameplay programming and building games with C#. I enjoy turning
-        ideas into playable experiences and improving my skills through
-        hands-on projects.
-      </p>
-
-      <div class="skills">
-        <span>Unity</span>
-        <span>C#</span>
-        <span>Gameplay Programming</span>
-        <span>Enemy AI</span>
-        <span>UI Systems</span>
-        <span>Game Logic</span>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section class="content-section" id="contact">
-  <div class="container">
-    <div class="contact-box">
-      <div class="section-label">03 / Get in touch</div>
-      <h2 class="section-heading">Let's Build Something.</h2>
-      <p>Open to discussing Unity game development opportunities.</p>
-
-      <div class="buttons" style="justify-content:center">
-        <a class="btn primary"
-           href="https://github.com/nikhilsonar63"
-           target="_blank" rel="noopener">GITHUB ↗</a>
-
-        <a class="btn secondary"
-           href="https://www.linkedin.com/in/nikhil-sonar-3a7878385/"
-           target="_blank" rel="noopener">LINKEDIN ↗</a>
-      </div>
-    </div>
-  </div>
-</section>
-
-</main>
-
-<footer>
-  <div class="container">
-    © 2026 Nikhil Sonar · Built with Unity passion and code.
-  </div>
-</footer>
-
-</body>
-        </html>
+  text
