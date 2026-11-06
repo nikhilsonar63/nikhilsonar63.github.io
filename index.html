@@ -3,12 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>हरे कृष्ण मंत्र काउंटर</title>
+    <title>हरे कृष्ण मंत्र काउंटर - प्रीमियम</title>
     <style>
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, #1e1e2f, #252542);
-            color: #fff;
+            font-family: 'Inter', system-ui, -apple-system, sans-serif;
+            background: linear-gradient(185deg, #0f0f1a, #151525);
+            color: #f3f4f6;
             display: flex;
             justify-content: center;
             align-items: center;
@@ -16,43 +16,81 @@
             margin: 0;
         }
         .counter-card {
-            background: #2d2d44;
-            padding: 30px;
-            border-radius: 20px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            background: rgba(30, 30, 50, 0.75);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            padding: 35px 25px;
+            border-radius: 24px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6);
             text-align: center;
-            max-width: 400px;
+            max-width: 380px;
             width: 90%;
         }
-        h2 { color: #ff9f43; margin-bottom: 5px; }
-        .mantra-text { font-size: 16px; color: #ccc; font-style: italic; margin-bottom: 20px; }
-        .display-section { margin: 20px 0; }
-        .round-box { font-size: 18px; color: #1dd1a1; margin-bottom: 10px; }
-        .count-box { font-size: 72px; font-weight: bold; color: #ff6b6b; font-family: monospace; }
+        h2 { 
+            color: #ffb043; 
+            margin-top: 0;
+            font-size: 24px;
+            letter-spacing: 0.5px;
+        }
+        .mantra-text { 
+            font-size: 15px; 
+            color: #a0aec0; 
+            line-height: 1.6;
+            margin-bottom: 30px; 
+            background: rgba(0, 0, 0, 0.2);
+            padding: 12px;
+            border-radius: 12px;
+        }
+        .display-section { 
+            margin: 30px 0; 
+        }
+        .round-box { 
+            font-size: 16px; 
+            color: #38ef7d; 
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 15px;
+        }
+        .count-box { 
+            font-size: 84px; 
+            font-weight: 800; 
+            color: #ff4757; 
+            font-family: 'Courier New', monospace;
+            line-height: 1;
+        }
         .tap-btn {
-            background: #ff9f43;
+            background: linear-gradient(135deg, #ff9f43, #ff6b6b);
             color: white;
             border: none;
-            padding: 20px 40px;
-            font-size: 22px;
-            font-weight: bold;
-            border-radius: 50px;
+            padding: 18px 30px;
+            font-size: 20px;
+            font-weight: 700;
+            border-radius: 16px;
             cursor: pointer;
             width: 100%;
-            box-shadow: 0 5px 15px rgba(255, 159, 67, 0.4);
-            transition: transform 0.1s;
+            box-shadow: 0 8px 20px rgba(255, 107, 107, 0.3);
+            transition: all 0.2s ease;
         }
-        .tap-btn:active { transform: scale(0.98); }
+        .tap-btn:active { 
+            transform: scale(0.96); 
+            box-shadow: 0 4px 10px rgba(255, 107, 107, 0.2);
+        }
         .reset-btn {
             background: transparent;
-            color: #aaa;
-            border: 1px solid #555;
+            color: #718096;
+            border: none;
             padding: 8px 20px;
-            margin-top: 20px;
-            border-radius: 5px;
+            margin-top: 25px;
+            border-radius: 8px;
             cursor: pointer;
+            font-size: 14px;
+            text-decoration: underline;
+            transition: color 0.2s;
         }
-        .reset-btn:hover { color: #fff; border-color: #aaa; }
+        .reset-btn:hover { 
+            color: #e2e8f0; 
+        }
     </style>
 </head>
 <body>
@@ -64,61 +102,83 @@
     <div class="display-section">
         <div class="round-box">माला (Rounds): <span id="rounds">0</span></div>
         <div class="count-box" id="counter">0</div>
-        <div style="color: #888; font-size: 14px;">/ 108</div>
+        <div style="color: #64748b; font-size: 14px; margin-top: 5px;">/ 108</div>
     </div>
 
-    <button class="tap-btn" id="tapBtn">जप करें (या Spacebar दबाएं)</button>
+    <button class="tap-btn" id="tapBtn">जप करें (Spacebar)</button>
     <br>
-    <button class="reset-btn" id="resetBtn">रीसेट करें</button>
+    <button class="reset-btn" id="resetBtn">काउंटर रीसेट करें</button>
 </div>
 
 <script>
-    let count = 0;
-    let rounds = 0;
+    // LocalStorage से पुराना डेटा लोड करना, अगर उपलब्ध न हो तो 0 सेट करना
+    let count = parseInt(localStorage.getItem('mantraCount')) || 0;
+    let rounds = parseInt(localStorage.getItem('mantraRounds')) || 0;
+
     const counterDisplay = document.getElementById('counter');
     const roundsDisplay = document.getElementById('rounds');
     const tapBtn = document.getElementById('tapBtn');
     const resetBtn = document.getElementById('resetBtn');
 
-    // ऑडियो फीडबैक (बीप साउंड) के लिए
+    // स्क्रीन पर शुरुआती वैल्यू दिखाना
+    counterDisplay.innerText = count;
+    roundsDisplay.innerText = rounds;
+
+    // ऑडियो कॉन्टैक्ट (बीप साउंड के लिए)
     const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
     function playBeep() {
         const osc = audioCtx.createOscillator();
         osc.connect(audioCtx.destination);
         osc.frequency.setValueAtTime(600, audioCtx.currentTime);
         osc.start();
-        osc.stop(audioCtx.currentTime + 0.1);
+        osc.stop(audioCtx.currentTime + 0.15);
+    }
+
+    // मोबाइल के लिए वाइब्रेशन फ़ंक्शन
+    function triggerVibration() {
+        if (navigator.vibrate) {
+            navigator.vibrate(200); // 200 मिलीसेकंड का वाइब्रेशन
+        }
     }
 
     function doCount() {
         count++;
         if (count > 108) {
-            count = 1; // सुमेरु लांघना नहीं है, इसलिए 1 से वापस शुरू
+            count = 1; 
             rounds++;
-            playBeep(); // 1 माला पूरी होने पर बीप
+            playBeep(); 
+            triggerVibration();
         }
+        
+        // स्क्रीन अपडेट करना
         counterDisplay.innerText = count;
         roundsDisplay.innerText = rounds;
+
+        // डेटा को लोकल स्टोरेज में सेव करना
+        localStorage.setItem('mantraCount', count);
+        localStorage.setItem('mantraRounds', rounds);
     }
 
-    // बटन क्लिक इवेंट
+    // माउस/टैप इवेंट
     tapBtn.addEventListener('click', doCount);
 
-    // कीबोर्ड (Spacebar या Enter) इवेंट
+    // कीबोर्ड इवेंट (Spacebar और Enter)
     document.addEventListener('keydown', (e) => {
         if (e.code === 'Space' || e.code === 'Enter') {
-            e.preventDefault(); // पेज स्क्रॉल होने से रोकने के लिए
+            e.preventDefault(); 
             doCount();
         }
     });
 
-    // रीसेट इवेंट
+    // रीसेट बटन
     resetBtn.addEventListener('click', () => {
-        if(confirm("क्या आप काउंटर को शून्य करना चाहते हैं?")) {
+        if(confirm("क्या आप अपनी माला का काउंट शून्य करना चाहते हैं?")) {
             count = 0;
             rounds = 0;
             counterDisplay.innerText = count;
             roundsDisplay.innerText = rounds;
+            localStorage.removeItem('mantraCount');
+            localStorage.removeItem('mantraRounds');
         }
     });
 </script>
