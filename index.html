@@ -1,187 +1,999 @@
+
 <!DOCTYPE html>
-<html lang="hi">
+<html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>हरे कृष्ण मंत्र काउंटर - प्रीमियम</title>
-    <style>
-        body {
-            font-family: 'Inter', system-ui, -apple-system, sans-serif;
-            background: linear-gradient(185deg, #0f0f1a, #151525);
-            color: #f3f4f6;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-            margin: 0;
-        }
-        .counter-card {
-            background: rgba(30, 30, 50, 0.75);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            padding: 35px 25px;
-            border-radius: 24px;
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6);
-            text-align: center;
-            max-width: 380px;
-            width: 90%;
-        }
-        h2 { 
-            color: #ffb043; 
-            margin-top: 0;
-            font-size: 24px;
-            letter-spacing: 0.5px;
-        }
-        .mantra-text { 
-            font-size: 15px; 
-            color: #a0aec0; 
-            line-height: 1.6;
-            margin-bottom: 30px; 
-            background: rgba(0, 0, 0, 0.2);
-            padding: 12px;
-            border-radius: 12px;
-        }
-        .display-section { 
-            margin: 30px 0; 
-        }
-        .round-box { 
-            font-size: 16px; 
-            color: #38ef7d; 
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            margin-bottom: 15px;
-        }
-        .count-box { 
-            font-size: 84px; 
-            font-weight: 800; 
-            color: #ff4757; 
-            font-family: 'Courier New', monospace;
-            line-height: 1;
-        }
-        .tap-btn {
-            background: linear-gradient(135deg, #ff9f43, #ff6b6b);
-            color: white;
-            border: none;
-            padding: 18px 30px;
-            font-size: 20px;
-            font-weight: 700;
-            border-radius: 16px;
-            cursor: pointer;
-            width: 100%;
-            box-shadow: 0 8px 20px rgba(255, 107, 107, 0.3);
-            transition: all 0.2s ease;
-        }
-        .tap-btn:active { 
-            transform: scale(0.96); 
-            box-shadow: 0 4px 10px rgba(255, 107, 107, 0.2);
-        }
-        .reset-btn {
-            background: transparent;
-            color: #718096;
-            border: none;
-            padding: 8px 20px;
-            margin-top: 25px;
-            border-radius: 8px;
-            cursor: pointer;
-            font-size: 14px;
-            text-decoration: underline;
-            transition: color 0.2s;
-        }
-        .reset-btn:hover { 
-            color: #e2e8f0; 
-        }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nikhil Sonar | Game Developer & Designer</title>
+<meta name="description" content="Nikhil Sonar - Unity Game Developer, Gameplay Programmer and Game Designer. Explore my games and projects.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+<style>
+:root {
+    --bg: #090b0a;
+    --card: #121613;
+    --green: #b8ff65;
+    --text: #f4f5f2;
+    --muted: #929a91;
+    --border: #252c26;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Inter', sans-serif;
+    line-height: 1.6;
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+.container {
+    width: min(1120px, 90%);
+    margin: auto;
+}
+
+/* NAVBAR */
+
+nav {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: rgba(9,11,10,.88);
+    backdrop-filter: blur(16px);
+    border-bottom: 1px solid var(--border);
+}
+
+.nav-content {
+    height: 76px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.logo {
+    font-size: 22px;
+    font-weight: 900;
+    letter-spacing: -1px;
+}
+
+.logo span {
+    color: var(--green);
+}
+
+.nav-links {
+    display: flex;
+    gap: 30px;
+    align-items: center;
+}
+
+.nav-links a {
+    color: var(--muted);
+    font-size: 13px;
+    font-weight: 600;
+    transition: .3s;
+}
+
+.nav-links a:hover {
+    color: var(--green);
+}
+
+.nav-btn {
+    border: 1px solid var(--green);
+    padding: 10px 18px;
+    border-radius: 6px;
+    color: var(--green) !important;
+}
+
+/* HERO */
+
+.hero {
+    min-height: 610px;
+    display: flex;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+    border-bottom: 1px solid var(--border);
+}
+
+.hero::before {
+    content: "";
+    position: absolute;
+    width: 520px;
+    height: 520px;
+    right: -100px;
+    top: 20px;
+    background: radial-gradient(circle,rgba(184,255,101,.12),transparent 70%);
+    pointer-events: none;
+}
+
+.hero-content {
+    position: relative;
+    z-index: 1;
+    padding: 90px 0;
+}
+
+.eyebrow {
+    color: var(--green);
+    font-size: 12px;
+    font-weight: 800;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    margin-bottom: 25px;
+}
+
+.hero h1 {
+    font-size: clamp(43px, 7vw, 78px);
+    line-height: 1.08;
+    letter-spacing: -4px;
+    font-weight: 900;
+    max-width: 850px;
+}
+
+.hero h1 span {
+    color: var(--green);
+}
+
+.hero-desc {
+    color: var(--muted);
+    max-width: 610px;
+    margin-top: 25px;
+    font-size: 16px;
+    line-height: 1.9;
+}
+
+.hero-buttons {
+    display: flex;
+    gap: 14px;
+    flex-wrap: wrap;
+    margin-top: 35px;
+}
+
+.btn {
+    padding: 14px 23px;
+    border-radius: 5px;
+    font-size: 13px;
+    font-weight: 800;
+    display: inline-block;
+    transition: .3s;
+}
+
+.btn-primary {
+    background: var(--green);
+    color: #10150c;
+}
+
+.btn-primary:hover {
+    background: white;
+    transform: translateY(-3px);
+}
+
+.btn-outline {
+    border: 1px solid #465047;
+    color: white;
+}
+
+.btn-outline:hover {
+    border-color: var(--green);
+    color: var(--green);
+}
+
+.hero-tags {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin-top: 40px;
+}
+
+.tag {
+    border: 1px solid var(--border);
+    background: rgba(255,255,255,.025);
+    padding: 8px 13px;
+    color: #b3bcb2;
+    font-size: 11px;
+    border-radius: 4px;
+}
+
+/* SECTION */
+
+section {
+    padding: 100px 0;
+}
+
+.section-top {
+    margin-bottom: 45px;
+}
+
+.section-label {
+    color: var(--green);
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 3px;
+    margin-bottom: 12px;
+}
+
+.section-title {
+    font-size: clamp(30px, 5vw, 43px);
+    font-weight: 900;
+    letter-spacing: -2px;
+}
+
+.section-subtitle {
+    color: var(--muted);
+    font-size: 14px;
+    margin-top: 12px;
+}
+
+/* PROJECTS */
+
+.projects-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 25px;
+}
+
+.project-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    overflow: hidden;
+    transition: .35s;
+}
+
+.project-card:hover {
+    transform: translateY(-6px);
+    border-color: var(--green);
+}
+
+.project-image {
+    width: 100%;
+    height: 250px;
+    overflow: hidden;
+    background: #1a211a;
+}
+
+.project-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: .5s;
+}
+
+.project-card:hover .project-image img {
+    transform: scale(1.045);
+}
+
+.project-info {
+    padding: 25px;
+}
+
+.project-number {
+    color: var(--green);
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 2px;
+}
+
+.project-info h3 {
+    font-size: 24px;
+    font-weight: 800;
+    margin: 9px 0;
+}
+
+.project-info p {
+    color: var(--muted);
+    font-size: 13px;
+    line-height: 1.8;
+    min-height: 70px;
+}
+
+.project-tech {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    margin: 18px 0 23px;
+}
+
+.project-tech span {
+    color: #c3d0c0;
+    background: #1c261c;
+    border: 1px solid #2c3a2c;
+    padding: 5px 9px;
+    font-size: 10px;
+    border-radius: 3px;
+}
+
+.project-link {
+    display: inline-block;
+    color: var(--green);
+    font-size: 12px;
+    font-weight: 800;
+    border-bottom: 1px solid var(--green);
+    padding-bottom: 4px;
+}
+
+/* ABOUT */
+
+.about-section {
+    background: #0e120f;
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+}
+
+.about-grid {
+    display: grid;
+    grid-template-columns: 1.2fr .8fr;
+    gap: 60px;
+    align-items: start;
+}
+
+.about-text {
+    color: var(--muted);
+    font-size: 14px;
+    line-height: 2;
+    margin-top: 20px;
+}
+
+.about-text strong {
+    color: white;
+}
+
+.about-highlight {
+    background: var(--card);
+    border: 1px solid var(--border);
+    padding: 30px;
+    border-radius: 9px;
+}
+
+.about-highlight h3 {
+    color: var(--green);
+    font-size: 15px;
+    margin-bottom: 18px;
+}
+
+.about-highlight p {
+    font-size: 13px;
+    color: var(--muted);
+    margin-bottom: 15px;
+}
+
+.about-highlight p:last-child {
+    margin-bottom: 0;
+}
+
+/* SKILLS */
+
+.skills-grid {
+    display: grid;
+    grid-template-columns: repeat(2,1fr);
+    gap: 25px;
+}
+
+.skill-box {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 9px;
+    padding: 30px;
+}
+
+.skill-box h3 {
+    font-size: 20px;
+    margin-bottom: 22px;
+}
+
+.skill-box h3 span {
+    color: var(--green);
+}
+
+.skill-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.skill-list span {
+    padding: 10px 13px;
+    background: #1b211b;
+    color: #cbd3c8;
+    border-radius: 4px;
+    font-size: 12px;
+    border: 1px solid #293029;
+}
+
+/* APPROACH */
+
+.approach-grid {
+    display: grid;
+    grid-template-columns: repeat(3,1fr);
+    gap: 18px;
+}
+
+.approach-card {
+    padding: 25px;
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+}
+
+.approach-card .number {
+    color: var(--green);
+    font-size: 12px;
+    font-weight: 900;
+}
+
+.approach-card h3 {
+    margin: 14px 0 8px;
+    font-size: 17px;
+}
+
+.approach-card p {
+    color: var(--muted);
+    font-size: 12px;
+    line-height: 1.8;
+}
+
+/* CONTACT */
+
+.contact-section {
+    text-align: center;
+    background: radial-gradient(ellipse at center,rgba(184,255,101,.08),transparent 65%);
+}
+
+.contact-section .section-subtitle {
+    max-width: 550px;
+    margin: 15px auto 30px;
+    line-height: 1.9;
+}
+
+.contact-links {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 14px;
+}
+
+/* FOOTER */
+
+footer {
+    padding: 27px 0;
+    border-top: 1px solid var(--border);
+}
+
+.footer-content {
+    display: flex;
+    justify-content: space-between;
+    gap: 15px;
+    flex-wrap: wrap;
+}
+
+footer p {
+    color: var(--muted);
+    font-size: 11px;
+}
+
+footer span {
+    color: var(--green);
+}
+
+/* MOBILE */
+
+@media(max-width:750px) {
+
+    .nav-content {
+        height: 68px;
+    }
+
+    .nav-links {
+        gap: 13px;
+    }
+
+    .nav-links a {
+        font-size: 10px;
+    }
+
+    .nav-links .nav-btn {
+        display: none;
+    }
+
+    .hero {
+        min-height: 570px;
+    }
+
+    .hero h1 {
+        letter-spacing: -2px;
+    }
+
+    section {
+        padding: 75px 0;
+    }
+
+    .projects-grid,
+    .about-grid,
+    .skills-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .approach-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .project-image {
+        height: 220px;
+    }
+
+    .about-grid {
+        gap: 30px;
+    }
+}
+
+@media(max-width:420px) {
+    .nav-links {
+        gap: 10px;
+    }
+
+    .nav-links a {
+        font-size: 9px;
+    }
+
+    .hero h1 {
+        font-size: 43px;
+    }
+
+    .project-info {
+        padding: 20px;
+    }
+}
+</style>
 </head>
+
 <body>
 
-<div class="counter-card">
-    <h2>हरे कृष्ण महामंत्र</h2>
-    <div class="mantra-text">हरे कृष्ण हरे कृष्ण कृष्ण कृष्ण हरे हरे<br>हरे राम हरे राम राम राम हरे हरे</div>
-    
-    <div class="display-section">
-        <div class="round-box">माला (Rounds): <span id="rounds">0</span></div>
-        <div class="count-box" id="counter">0</div>
-        <div style="color: #64748b; font-size: 14px; margin-top: 5px;">/ 108</div>
-    </div>
+<!-- NAVIGATION -->
 
-    <button class="tap-btn" id="tapBtn">जप करें (Spacebar)</button>
-    <br>
-    <button class="reset-btn" id="resetBtn">काउंटर रीसेट करें</button>
+<nav>
+<div class="container nav-content">
+
+<a href="#" class="logo">NIKHIL<span>.</span></a>
+
+<div class="nav-links">
+<a href="#work">Projects</a>
+<a href="#about">About</a>
+<a href="#skills">Skills</a>
+<a href="#contact" class="nav-btn">Contact Me</a>
 </div>
 
-<script>
-    // LocalStorage से पुराना डेटा लोड करना, अगर उपलब्ध न हो तो 0 सेट करना
-    let count = parseInt(localStorage.getItem('mantraCount')) || 0;
-    let rounds = parseInt(localStorage.getItem('mantraRounds')) || 0;
+</div>
+</nav>
 
-    const counterDisplay = document.getElementById('counter');
-    const roundsDisplay = document.getElementById('rounds');
-    const tapBtn = document.getElementById('tapBtn');
-    const resetBtn = document.getElementById('resetBtn');
+<!-- HERO -->
 
-    // स्क्रीन पर शुरुआती वैल्यू दिखाना
-    counterDisplay.innerText = count;
-    roundsDisplay.innerText = rounds;
+<header class="hero">
+<div class="container hero-content">
 
-    // ऑडियो कॉन्टैक्ट (बीप साउंड के लिए)
-    const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
-    function playBeep() {
-        const osc = audioCtx.createOscillator();
-        osc.connect(audioCtx.destination);
-        osc.frequency.setValueAtTime(600, audioCtx.currentTime);
-        osc.start();
-        osc.stop(audioCtx.currentTime + 0.15);
-    }
+<div class="eyebrow">UNITY GAME DEVELOPER & DESIGNER</div>
 
-    // मोबाइल के लिए वाइब्रेशन फ़ंक्शन
-    function triggerVibration() {
-        if (navigator.vibrate) {
-            navigator.vibrate(200); // 200 मिलीसेकंड का वाइब्रेशन
-        }
-    }
+<h1>
+I BUILD GAMES.<br>
+I DESIGN <span>EXPERIENCES.</span>
+</h1>
 
-    function doCount() {
-        count++;
-        if (count > 108) {
-            count = 1; 
-            rounds++;
-            playBeep(); 
-            triggerVibration();
-        }
-        
-        // स्क्रीन अपडेट करना
-        counterDisplay.innerText = count;
-        roundsDisplay.innerText = rounds;
+<p class="hero-desc">
+I'm Nikhil Sonar, a self-taught game developer and designer
+focused on creating interactive gameplay experiences using
+Unity and C#. I enjoy working on gameplay programming,
+game mechanics, level design and player experience.
+</p>
 
-        // डेटा को लोकल स्टोरेज में सेव करना
-        localStorage.setItem('mantraCount', count);
-        localStorage.setItem('mantraRounds', rounds);
-    }
+<div class="hero-buttons">
+<a href="#work" class="btn btn-primary">EXPLORE MY WORK ↗</a>
+<a href="#about" class="btn btn-outline">MORE ABOUT ME</a>
+</div>
 
-    // माउस/टैप इवेंट
-    tapBtn.addEventListener('click', doCount);
+<div class="hero-tags">
+<span class="tag">UNITY ENGINE</span>
+<span class="tag">C# PROGRAMMING</span>
+<span class="tag">GAME DESIGN</span>
+<span class="tag">GAMEPLAY DEVELOPMENT</span>
+</div>
 
-    // कीबोर्ड इवेंट (Spacebar और Enter)
-    document.addEventListener('keydown', (e) => {
-        if (e.code === 'Space' || e.code === 'Enter') {
-            e.preventDefault(); 
-            doCount();
-        }
-    });
+</div>
+</header>
 
-    // रीसेट बटन
-    resetBtn.addEventListener('click', () => {
-        if(confirm("क्या आप अपनी माला का काउंट शून्य करना चाहते हैं?")) {
-            count = 0;
-            rounds = 0;
-            counterDisplay.innerText = count;
-            roundsDisplay.innerText = rounds;
-            localStorage.removeItem('mantraCount');
-            localStorage.removeItem('mantraRounds');
-        }
-    });
-</script>
+<!-- PROJECTS -->
+
+<section id="work">
+<div class="container">
+
+<div class="section-top">
+<div class="section-label">SELECTED WORK / 2026</div>
+<h2 class="section-title">My Projects<span style="color:var(--green)">.</span></h2>
+<p class="section-subtitle">
+A collection of games I've developed and experimented with.
+</p>
+</div>
+
+<div class="projects-grid">
+
+<!-- LAST STAND -->
+
+<article class="project-card">
+<div class="project-image">
+<img src="assets/last-stand.jpg" alt="Last Stand game cover">
+</div>
+
+<div class="project-info">
+<div class="project-number">01 / ACTION PLATFORMER</div>
+<h3>Last Stand</h3>
+
+<p>
+A 2D action platformer featuring a police protagonist,
+enemy encounters and a final boss fight. Includes
+combat mechanics, enemy behaviour, armor and shield
+systems, collectible coins and boss combat.
+</p>
+
+<div class="project-tech">
+<span>Unity</span>
+<span>C#</span>
+<span>2D Gameplay</span>
+<span>Game Design</span>
+</div>
+
+<a class="project-link"
+href="https://youtu.be/CyDJKsLVs0E"
+target="_blank" rel="noopener">
+WATCH GAMEPLAY ↗
+</a>
+</div>
+</article>
+
+<!-- DARK NIGHT SHOOTER -->
+
+<article class="project-card">
+<div class="project-image">
+<img src="assets/dark-night-shooter.jpg" alt="Dark Night Shooter cover">
+</div>
+
+<div class="project-info">
+<div class="project-number">02 / SHOOTER GAME</div>
+<h3>Dark Night Shooter</h3>
+
+<p>
+A zombie shooter featuring enemy AI with patrol and
+chase behaviour, raycast shooting, ammunition management,
+health systems, explosive barrels, mines and a boss encounter.
+</p>
+
+<div class="project-tech">
+<span>Unity</span>
+<span>C#</span>
+<span>Enemy AI</span>
+<span>Combat Systems</span>
+</div>
+
+<a class="project-link"
+href="https://youtu.be/kM29_dHBlAY"
+target="_blank" rel="noopener">
+WATCH GAMEPLAY ↗
+</a>
+</div>
+</article>
+
+<!-- ROLL A BALL -->
+
+<article class="project-card">
+<div class="project-image">
+<img src="assets/rolling-ball.jpg" alt="Rolling Ball game cover">
+</div>
+
+<div class="project-info">
+<div class="project-number">03 / 3D CASUAL GAME</div>
+<h3>Roll A Ball</h3>
+
+<p>
+A 3D rolling ball game built with Unity,
+featuring five playable levels and core
+player movement and gameplay mechanics.
+</p>
+
+<div class="project-tech">
+<span>Unity</span>
+<span>C#</span>
+<span>3D Gameplay</span>
+<span>Level Design</span>
+</div>
+
+<a class="project-link"
+href="https://youtu.be/BqhjrqneMkE"
+target="_blank" rel="noopener">
+WATCH GAMEPLAY ↗
+</a>
+</div>
+</article>
+
+<!-- CASINO -->
+
+<article class="project-card">
+<div class="project-image">
+<img src="assets/casino.jpg" alt="Casino Slot Game cover">
+</div>
+
+<div class="project-info">
+<div class="project-number">04 / SLOT GAME</div>
+<h3>Casino Slot Game</h3>
+
+<p>
+A slot machine game featuring a spin system,
+virtual coins, matching combinations, rewards,
+loan functionality and EMI-based coin deductions.
+</p>
+
+<div class="project-tech">
+<span>Unity</span>
+<span>C#</span>
+<span>Game Logic</span>
+<span>UI Systems</span>
+</div>
+
+<a class="project-link"
+href="https://youtube.com/shorts/Tr1B3HaEbiA"
+target="_blank" rel="noopener">
+WATCH GAMEPLAY ↗
+</a>
+</div>
+</article>
+
+<!-- FLAPPY BIRD -->
+
+<article class="project-card">
+<div class="project-image">
+<img src="assets/flappy-bird.jpg" alt="Flappy Bird Clone cover">
+</div>
+
+<div class="project-info">
+<div class="project-number">05 / 2D ARCADE GAME</div>
+<h3>Flappy Bird Clone</h3>
+
+<p>
+A 2D arcade-style clone inspired by the classic
+Flappy Bird gameplay, built as a hands-on Unity
+game development project.
+</p>
+
+<div class="project-tech">
+<span>Unity</span>
+<span>C#</span>
+<span>2D Gameplay</span>
+<span>Arcade Mechanics</span>
+</div>
+
+<a class="project-link"
+href="https://youtube.com/shorts/93rFrRQw2uc"
+target="_blank" rel="noopener">
+WATCH GAMEPLAY ↗
+</a>
+</div>
+</article>
+
+</div>
+</div>
+</section>
+
+<!-- ABOUT -->
+
+<section id="about" class="about-section">
+<div class="container about-grid">
+
+<div>
+<div class="section-label">ABOUT ME</div>
+<h2 class="section-title">The Person Behind<br> The Games<span style="color:var(--green)">.</span></h2>
+
+<p class="about-text">
+I'm <strong>Nikhil Sonar</strong>, a self-taught Unity game
+developer with a strong interest in both game programming
+and game design.
+<br><br>
+My journey in game development is built around practical
+learning, experimentation and creating playable projects.
+I work with Unity and C#, and enjoy understanding how
+gameplay systems work from the inside.
+<br><br>
+Beyond programming, I'm interested in designing gameplay
+mechanics, planning levels, balancing challenges and
+creating engaging player experiences.
+<br><br>
+My goal is to grow as a versatile game developer who can
+contribute to both the technical and creative sides of
+game production.
+</p>
+</div>
+
+<div class="about-highlight">
+<h3>MY APPROACH</h3>
+
+<p>01 — Learn by building real projects.</p>
+<p>02 — Understand gameplay systems and mechanics.</p>
+<p>03 — Combine creative design with technical implementation.</p>
+<p>04 — Experiment, test and improve player experiences.</p>
+<p>05 — Keep learning and improving with every project.</p>
+</div>
+
+</div>
+</section>
+
+<!-- SKILLS -->
+
+<section id="skills">
+<div class="container">
+
+<div class="section-top">
+<div class="section-label">WHAT I WORK WITH</div>
+<h2 class="section-title">Skills & Expertise<span style="color:var(--green)">.</span></h2>
+<p class="section-subtitle">
+My practical skills across game development and game design.
+</p>
+</div>
+
+<div class="skills-grid">
+
+<div class="skill-box">
+<h3><span>01.</span> Game Development</h3>
+<div class="skill-list">
+<span>Unity Engine</span>
+<span>C# Programming</span>
+<span>Gameplay Mechanics</span>
+<span>Player Controllers</span>
+<span>Enemy AI</span>
+<span>NavMesh</span>
+<span>Raycast Shooting</span>
+<span>UI Implementation</span>
+<span>Game Logic</span>
+<span>Game Testing</span>
+</div>
+</div>
+
+<div class="skill-box">
+<h3><span>02.</span> Game Design</h3>
+<div class="skill-list">
+<span>Game Concepts</span>
+<span>Gameplay Design</span>
+<span>Level Design</span>
+<span>Game Mechanics</span>
+<span>Enemy Behaviour</span>
+<span>Boss Fight Design</span>
+<span>Game Balancing</span>
+<span>Gameplay Flow</span>
+<span>Player Experience</span>
+<span>Game Progression</span>
+</div>
+</div>
+
+<div class="skill-box">
+<h3><span>03.</span> Tools & Platforms</h3>
+<div class="skill-list">
+<span>Unity</span>
+<span>Visual Studio</span>
+<span>GitHub</span>
+<span>Git</span>
+<span>itch.io</span>
+</div>
+</div>
+
+<div class="skill-box">
+<h3><span>04.</span> Development Areas</h3>
+<div class="skill-list">
+<span>2D Game Development</span>
+<span>3D Game Development</span>
+<span>Gameplay Systems</span>
+<span>Combat Systems</span>
+<span>Interactive UI</span>
+<span>Prototyping</span>
+</div>
+</div>
+
+</div>
+</div>
+</section>
+
+<!-- WORKING APPROACH -->
+
+<section style="background:#0e120f;border-top:1px solid var(--border)">
+<div class="container">
+
+<div class="section-top">
+<div class="section-label">HOW I THINK</div>
+<h2 class="section-title">Beyond Just Coding<span style="color:var(--green)">.</span></h2>
+</div>
+
+<div class="approach-grid">
+
+<div class="approach-card">
+<div class="number">01 / DESIGN</div>
+<h3>Gameplay First</h3>
+<p>
+I focus on how a game feels to play,
+how mechanics work and how players
+interact with the game world.
+</p>
+</div>
+
+<div class="approach-card">
+<div class="number">02 / BUILD</div>
+<h3>Technical Implementation</h3>
+<p>
+I turn gameplay ideas into functional
+systems using Unity, C# and practical
+problem-solving.
+</p>
+</div>
+
+<div class="approach-card">
+<div class="number">03 / IMPROVE</div>
+<h3>Testing & Iteration</h3>
+<p>
+I believe in testing mechanics,
+identifying issues and improving
+the gameplay experience.
+</p>
+</div>
+
+</div>
+</div>
+</section>
+
+<!-- CONTACT -->
+
+<section id="contact" class="contact-section">
+<div class="container">
+
+<div class="section-label">LET'S CONNECT</div>
+
+<h2 class="section-title">
+Let's Create Something<br>
+<span style="color:var(--green)">Great Together.</span>
+</h2>
+
+<p class="section-subtitle">
+I'm interested in opportunities in Unity Game Development,
+Gameplay Programming and Game Design. Feel free to explore
+my projects and connect with me.
+</p>
+
+<div class="contact-links">
+<a href="https://github.com/nikhilsonar63"
+target="_blank" rel="noopener"
+class="btn btn-primary">GITHUB ↗</a>
+
+<a href="https://nikhilsonar.itch.io/slot-game"
+target="_blank" rel="noopener"
+class="btn btn-outline">ITCH.IO ↗</a>
+</div>
+
+</div>
+</section>
+
+<!-- FOOTER -->
+
+<footer>
+<div class="container footer-content">
+<p>© 2026 Nikhil Sonar. All Rights Reserved.</p>
+<p>Designed & Built with <span>♥</span> for Games.</p>
+</div>
+</footer>
 
 </body>
 </html>
